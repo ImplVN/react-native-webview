@@ -1,5 +1,5 @@
 import WebKit
-
+// reference: https://github.com/brave/brave-core/blob/5953436ac2e5f2f177d8a62a9889629c491c0971/ios/brave-ios/Sources/Web/WebKit/WebKitPrivateHelpers.swift#L53
 extension WKNavigationAction {
   var isSyntheticClick: Bool {
     responds(to: Selector(("_syntheticClickType")))

@@ -1585,7 +1585,7 @@ RCTAutoInsetsProtocol, WKScriptMessageHandlerWithReply>
     BOOL isMainFrame = (navigationAction.targetFrame != nil) ?
                        navigationAction.targetFrame.isMainFrame :
                        navigationAction.sourceFrame.isMainFrame;
-    BOOL isSyntheticClick = [navigationAction isSyntheticClick];
+    BOOL isSyntheticClick = [WKNavigationActionHelper isSyntheticClick:navigationAction];
 
     NSURL *requestURL = request.URL;
     if (request && requestURL) {
