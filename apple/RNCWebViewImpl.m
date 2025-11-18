@@ -1582,6 +1582,10 @@ RCTAutoInsetsProtocol, WKScriptMessageHandlerWithReply>
     NSURLRequest *request = navigationAction.request;
     BOOL isTopFrame = [request.URL isEqual:request.mainDocumentURL];
     BOOL hasTargetFrame = navigationAction.targetFrame != nil;
+    BOOL isMainFrame = (navigationAction.targetFrame != nil) ?
+                       navigationAction.targetFrame.isMainFrame :
+                       navigationAction.sourceFrame.isMainFrame;
+    BOOL isSyntheticClick = [navigationAction isSyntheticClick];
 
     NSURL *requestURL = request.URL;
     if (request && requestURL) {
@@ -1705,7 +1709,9 @@ RCTAutoInsetsProtocol, WKScriptMessageHandlerWithReply>
             @"navigationType": navigationTypes[@(navigationType)],
             @"isTopFrame": @(isTopFrame),
             @"hasTargetFrame": @(hasTargetFrame),
-            @"lockIdentifier": @(lockIdentifier)
+            @"lockIdentifier": @(lockIdentifier),
+            @"isMainFrame": @(isMainFrame),
+            @"isSyntheticClick": @(isSyntheticClick)
         }];
         _onShouldStartLoadWithRequest(event);
         // decisionHandler(WKNavigationActionPolicyAllow);
